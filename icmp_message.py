@@ -48,9 +48,10 @@ def main():
 
     if os.geteuid() == 0:
         IPv4 = get_IP(hostname, dns, "A")
-        IPv6 = get_IP(hostname, dns, "AAAA")
     else:
         exit("Script needs to be run as root user")
+
+    send_msg(IPv4, message)
 
 if __name__ == "__main__":
     main()
