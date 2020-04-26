@@ -18,7 +18,7 @@ def get_IP(hostname, dns, record):
     return ADDR
 
 def parser():
-    parser = argparse.ArgumentParser(description='Query Google\'s DNS server for the IPv4 address of a hostname')
+    parser = argparse.ArgumentParser(description='Query a DNS server for the IPv4 address of a hostname')
     parser.add_argument('-H', '--hostname',
                         dest='host',
                         required=True,
