@@ -20,6 +20,21 @@ optional arguments:
 
   --ipv6                Get IPv6 address
 
+## icmp\_message.py
+icmp\_message.py is a script to demonstrate how to send an ICMP message to a given IP address. Like DNS.py, this script needs to be run as root.
+
+### Options for usage:
+
+optional arguments:
+
+  -h, --help            show this help message and exit
+
+  -H HOST, --hostname HOST Set hostname
+
+  -m MESSAGE, --message MESSAGE Set message to be sent
+
+  -d DNS, --dns DNS     Set DNS server
+
 ## Authors
 Keane Wolter - dns.py
 
