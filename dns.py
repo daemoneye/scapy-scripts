@@ -14,15 +14,15 @@ def get_IPv4(hostname, dns):
     return IPv4
 
 def get_IPv6(hostname, dns):
-    IPv4 = ''
+    IPv6 = ''
     
     # Localhost is always ::1
     if hostname == 'localhost':
-        IPv4 = '::1'
+        IPv6 = '::1'
     else:
         answer = sr1(IP(dst=dns)/UDP(sport=RandShort(), dport=53)/DNS(rd=1,qd=DNSQR(qname=hostname,qtype="AAAA")))
-        IPv4 = str(answer.an.rdata)
-    return IPv4
+        IPv6 = str(answer.an.rdata)
+    return IPv6
 
 def parser():
     parser = argparse.ArgumentParser(description='Query Google\'s DNS server for the IPv4 address of a hostname')
