@@ -14,10 +14,13 @@ Query a DNS server for the IPv4 address of a hostname
 
 optional arguments:
   -h, --help            show this help message and exit
-  -H HOST, --hostname HOST
-                        Set hostname
+
+  -H HOST, --hostname HOST Set hostname
+
   -d DNS, --dns DNS     Set DNS server
+
   --ipv4                Get IPv4 address
+
   --ipv6                Get IPv6 address
 
 ## Authors
