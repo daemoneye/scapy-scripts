@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import os
 from scapy.all import *
 
 def get_IP(hostname, dns, record):
@@ -43,10 +44,13 @@ def main():
 
     if dns == None:
         dns = '8.8.8.8'
-    if args.ipv4:
-        print(get_IP(hostname, dns, "A"))
-    if args.ipv6:
-        print(get_IP(hostname, dns, "AAAA"))
+    if os.geteuid() == 0:
+        if args.ipv4:
+            print(get_IP(hostname, dns, "A"))
+        if args.ipv6:
+            print(get_IP(hostname, dns, "AAAA"))
+    else:
+        exit("Script needs to be run as root user")
 
 if __name__ == "__main__":
     main()
