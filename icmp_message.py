@@ -18,7 +18,7 @@ def get_IP(hostname, dns, record):
     return ADDR
 
 def send_msg(address, message):
-    send(IP(dst=address)/ICMP()/message)
+    send(IP(dst=address)/ICMP()/message, verbose=0)
 
 def parser():
     parser = argparse.ArgumentParser(description='Send a message to another machine via ICMP')
