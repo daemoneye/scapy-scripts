@@ -13,7 +13,7 @@ def get_IP(hostname, dns, record):
         elif record == "AAAA":
             ADDR = "::1"
     else:
-        answer = sr1(IP(dst=dns)/UDP(sport=RandShort(), dport=53)/DNS(rd=1,qd=DNSQR(qname=hostname,qtype=record)))
+        answer = sr1(IP(dst=dns)/UDP(sport=RandShort(), dport=53)/DNS(rd=1,qd=DNSQR(qname=hostname,qtype=record)), verbose=0)
         ADDR = answer.an.rdata
     return ADDR
 
@@ -40,10 +40,8 @@ def main():
     if dns == None:
         dns = '8.8.8.8'
     if os.geteuid() == 0:
-        if args.ipv4:
-            print(get_IP(hostname, dns, "A"))
-        if args.ipv6:
-            print(get_IP(hostname, dns, "AAAA"))
+        print(get_IP(hostname, dns, "A"))
+        print(get_IP(hostname, dns, "AAAA"))
     else:
         exit("Script needs to be run as root user")
 
