@@ -34,9 +34,11 @@ def parser():
                         help='Set DNS server')
     parser.add_argument('--ipv4',
                         dest='ipv4',
+                        help='Get IPv4 address',
                         action='store_true')
     parser.add_argument('--ipv6',
                         dest='ipv6',
+                        help='Get IPv6 address',
                         action='store_true')
     return parser.parse_args()
 
