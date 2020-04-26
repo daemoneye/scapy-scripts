@@ -6,11 +6,7 @@ dns.py is my first attempt at writing a script using Scapay. The goal is to be a
 
 dns.py needs to be run as root.
 
-Options for usage:
-
-usage: dns.py [-h] -H HOST [-d DNS] [--ipv4] [--ipv6]
-
-Query a DNS server for the IPv4 address of a hostname
+### Options for usage:
 
 optional arguments:
 
