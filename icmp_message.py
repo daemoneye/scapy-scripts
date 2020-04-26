@@ -18,22 +18,18 @@ def get_IP(hostname, dns, record):
     return ADDR
 
 def parser():
-    parser = argparse.ArgumentParser(description='Query a DNS server for the IPv4 address of a hostname')
+    parser = argparse.ArgumentParser(description='Send a message to another machine via ICMP')
     parser.add_argument('-H', '--hostname',
                         dest='host',
                         required=True,
                         help='Set hostname')
+    parser.add_argument('-m', '--message',
+                        dest='message',
+                        required=True,
+                        help='Set message to be sent')
     parser.add_argument('-d', '--dns',
                         dest='dns',
                         help='Set DNS server')
-    parser.add_argument('--ipv4',
-                        dest='ipv4',
-                        help='Get IPv4 address',
-                        action='store_true')
-    parser.add_argument('--ipv6',
-                        dest='ipv6',
-                        help='Get IPv6 address',
-                        action='store_true')
     return parser.parse_args()
 
 def main():
