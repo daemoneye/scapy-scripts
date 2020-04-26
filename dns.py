@@ -6,8 +6,6 @@ from scapy.all import *
 def get_IP(hostname, dns, record):
     ADDR = ''
 
-    print(dns)
-
     # Set localhost IP address
     if hostname == "localhost":
         if record == "A":
