@@ -17,6 +17,9 @@ def get_IP(hostname, dns, record):
         ADDR = answer.an.rdata
     return ADDR
 
+def send_msg(address, message):
+    send(IP(dst=address)/ICMP()/message)
+
 def parser():
     parser = argparse.ArgumentParser(description='Send a message to another machine via ICMP')
     parser.add_argument('-H', '--hostname',
@@ -25,7 +28,6 @@ def parser():
                         help='Set hostname')
     parser.add_argument('-m', '--message',
                         dest='message',
-                        required=True,
                         help='Set message to be sent')
     parser.add_argument('-d', '--dns',
                         dest='dns',
@@ -35,13 +37,18 @@ def parser():
 def main():
     args = parser()
     hostname = args.host
+    message = args.message
     dns = args.dns
 
     if dns == None:
         dns = '8.8.8.8'
+
+    if message == None:
+        message = input("Enter the message you want to send: ")
+
     if os.geteuid() == 0:
-        print(get_IP(hostname, dns, "A"))
-        print(get_IP(hostname, dns, "AAAA"))
+        IPv4 = get_IP(hostname, dns, "A")
+        IPv6 = get_IP(hostname, dns, "AAAA")
     else:
         exit("Script needs to be run as root user")
 
