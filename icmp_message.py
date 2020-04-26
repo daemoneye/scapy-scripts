@@ -24,10 +24,12 @@ def parser():
     parser = argparse.ArgumentParser(description='Send a message to another machine via ICMP')
     parser.add_argument('-H', '--hostname',
                         dest='host',
+                        type=str,
                         required=True,
                         help='Set hostname')
     parser.add_argument('-m', '--message',
                         dest='message',
+                        type=str,
                         help='Set message to be sent')
     parser.add_argument('-d', '--dns',
                         dest='dns',
@@ -43,13 +45,13 @@ def main():
     if dns == None:
         dns = '8.8.8.8'
 
+    if os.geteuid() != 0:
+        exit("Script needs to be run as root user")
+
     if message == None:
         message = input("Enter the message you want to send: ")
 
-    if os.geteuid() == 0:
-        IPv4 = get_IP(hostname, dns, "A")
-    else:
-        exit("Script needs to be run as root user")
+    IPv4 = get_IP(hostname, dns, "A")
 
     send_msg(IPv4, message)
 
