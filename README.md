@@ -13,6 +13,7 @@ usage: dns.py [-h] -H HOST [-d DNS] [--ipv4] [--ipv6]
 Query a DNS server for the IPv4 address of a hostname
 
 optional arguments:
+
   -h, --help            show this help message and exit
 
   -H HOST, --hostname HOST Set hostname
