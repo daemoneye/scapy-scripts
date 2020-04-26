@@ -2,27 +2,21 @@
 import argparse
 from scapy.all import *
 
-def get_IPv4(hostname, dns):
-    IPv4 = ''
-    
-    # Localhost is always 127.0.0.1
-    if hostname == 'localhost':
-        IPv4 = '127.0.0.1'
-    else:
-        answer = sr1(IP(dst=dns)/UDP(sport=RandShort(), dport=53)/DNS(rd=1,qd=DNSQR(qname=hostname,qtype="A")))
-        IPv4 = str(answer.an.rdata)
-    return IPv4
+def get_IP(hostname, dns, record):
+    ADDR = ''
 
-def get_IPv6(hostname, dns):
-    IPv6 = ''
-    
-    # Localhost is always ::1
-    if hostname == 'localhost':
-        IPv6 = '::1'
+    print(dns)
+
+    # Set localhost IP address
+    if hostname == "localhost":
+        if record == "A":
+            ADDR = "127.0.0.1"
+        elif record == "AAAA":
+            ADDR = "::1"
     else:
-        answer = sr1(IP(dst=dns)/UDP(sport=RandShort(), dport=53)/DNS(rd=1,qd=DNSQR(qname=hostname,qtype="AAAA")))
-        IPv6 = str(answer.an.rdata)
-    return IPv6
+        answer = sr1(IP(dst=dns)/UDP(sport=RandShort(), dport=53)/DNS(rd=1,qd=DNSQR(qname=hostname,qtype=record)))
+        ADDR = answer.an.rdata
+    return ADDR
 
 def parser():
     parser = argparse.ArgumentParser(description='Query Google\'s DNS server for the IPv4 address of a hostname')
@@ -46,12 +40,13 @@ def main():
     args = parser()
     hostname = args.host
     dns = args.dns
+
     if dns == None:
         dns = '8.8.8.8'
     if args.ipv4:
-        print(get_IPv4(hostname, dns))
+        print(get_IP(hostname, dns, "A"))
     if args.ipv6:
-        print(get_IPv6(hostname, dns))
+        print(get_IP(hostname, dns, "AAAA"))
 
 if __name__ == "__main__":
     main()
