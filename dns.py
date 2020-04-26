@@ -21,6 +21,7 @@ def parser():
     parser = argparse.ArgumentParser(description='Query Google\'s DNS server for the IPv4 address of a hostname')
     parser.add_argument('-H', '--hostname',
                         dest='host',
+                        required=True,
                         help='Set hostname')
     parser.add_argument('-d', '--dns',
                         dest='dns',
