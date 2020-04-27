@@ -17,6 +17,15 @@ def get_IP(hostname, dns, record):
         ADDR = answer.an.rdata
     return ADDR
 
+def is_ip(address):
+    isIP = True
+    split = address.split('.')
+    for each in split:
+        for char in each:
+            if char.isalpha():
+                isIP = False
+    return isIP
+
 def send_msg(address, message):
     send(IP(dst=address)/ICMP()/message, verbose=0)
 
@@ -51,7 +60,8 @@ def main():
     if message == None:
         message = input("Enter the message you want to send: ")
 
-    IPv4 = get_IP(hostname, dns, "A")
+    if is_ip(hostname) == False:
+        IPv4 = get_IP(hostname, dns, "A")
 
     send_msg(IPv4, message)
 
