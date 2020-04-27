@@ -31,10 +31,8 @@ def send_msg(address, message):
 
 def parser():
     parser = argparse.ArgumentParser(description='Send a message to another machine via ICMP')
-    parser.add_argument('-H', '--hostname',
-                        dest='host',
+    parser.add_argument(dest='host',
                         type=str,
-                        required=True,
                         help='Set hostname')
     parser.add_argument('-m', '--message',
                         dest='message',
@@ -62,6 +60,8 @@ def main():
 
     if is_ip(hostname) == False:
         IPv4 = get_IP(hostname, dns, "A")
+    else:
+        IPv4 = hostname
 
     send_msg(IPv4, message)
 
