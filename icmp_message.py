@@ -3,6 +3,7 @@ import argparse
 import os
 from scapy.all import *
 
+# Get the IPv4 or IPv6 address of a FQDN from a given DNS server
 def get_IP(hostname, dns, record):
     ADDR = ''
 
@@ -17,6 +18,7 @@ def get_IP(hostname, dns, record):
         ADDR = answer.an.rdata
     return ADDR
 
+# Check if address give is a FQDN or IP Address
 def is_ip(address):
     isIP = True
     split = address.split('.')
@@ -29,6 +31,7 @@ def is_ip(address):
 def send_msg(address, message):
     send(IP(dst=address)/ICMP()/message, verbose=0)
 
+# Generate flags using argparse
 def parser():
     parser = argparse.ArgumentParser(description='Send a message to another machine via ICMP')
     parser.add_argument(dest='host',
@@ -48,7 +51,6 @@ def main():
     hostname = args.host
     message = args.message
     dns = args.dns
-
     if dns == None:
         dns = '8.8.8.8'
 
