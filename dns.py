@@ -13,15 +13,13 @@ def get_IP(hostname, dns, record):
         elif record == "AAAA":
             ADDR = "::1"
     else:
-        answer = sr1(IP(dst=dns)/UDP(sport=RandShort(), dport=53)/DNS(rd=1,qd=DNSQR(qname=hostname,qtype=record)))
+        answer = sr1(IP(dst=dns)/UDP(sport=RandShort(), dport=53)/DNS(rd=1,qd=DNSQR(qname=hostname,qtype=record)), verbose=0)
         ADDR = answer.an.rdata
     return ADDR
 
 def parser():
     parser = argparse.ArgumentParser(description='Query a DNS server for the IPv4 address of a hostname')
-    parser.add_argument('-H', '--hostname',
-                        dest='host',
-                        required=True,
+    parser.add_argument(dest='host',
                         help='Set hostname')
     parser.add_argument('-d', '--dns',
                         dest='dns',
