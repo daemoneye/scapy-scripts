@@ -35,6 +35,9 @@ optional arguments:
 
   -d DNS, --dns DNS     Set DNS server
 
+## interface\_info.py
+interface\_info.py is a tool to simply inform you of the IP and MAC addresses for all interfaces on the machine it is running on.
+
 ## Authors
 Keane Wolter - dns.py
 
