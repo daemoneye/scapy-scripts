@@ -16,7 +16,7 @@ def query(target_ip):
         clients.append({'ip': received.psrc, 'mac': received.hwsrc})
 
     # Reset own MAC address
-    Ether(dst=mac)
+    Ether(dst=local_mac)
 
     return clients
 
