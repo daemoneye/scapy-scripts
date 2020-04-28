@@ -38,8 +38,14 @@ optional arguments:
 ## interface\_info.py
 interface\_info.py is a tool to simply inform you of the IP and MAC addresses for all interfaces on the machine it is running on.
 
+## network\_scanner.py
+The network\_scanner.py script will scan an IP range and return all active IP addresses with the appropriate MAC address. The only flag that is required is the IP address range in CIDR notation.
+
 ## Authors
 Keane Wolter - dns.py
+					icmp_message.py
+					interface_info.py
+					network_scanner.py
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
