@@ -12,6 +12,7 @@ def query(target_ip):
     # Quietly get the results
     result  = srp(packet, timeout=3, verbose=0)[0]
 
+    # Store IP address and MAC address in an array of dictionaries
     for sent, received in result:
         clients.append({'ip': received.psrc, 'mac': received.hwsrc})
 
@@ -30,6 +31,8 @@ def arguments():
 def main():
     args = arguments()
     clients = query(args.target)
+
+    # Formatted display of data collected
     print("Available devices:")
     print("IP" + " "*18 + "MAC")
     for client in clients:
